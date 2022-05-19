@@ -1,5 +1,7 @@
 package com.guance.service.demo.controller;
 
+import com.guance.service.demo.utils.DataResult;
+import com.guance.service.demo.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,14 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String getUserInfo(){
+    public DataResult getUserInfo(){
+        UserVO user = new UserVO();
+        user.setUserName("admin");
+        user.setNickName("");
+        user.setId(1);
+        user.setEmail("test@guance.com");
+        user.setPhonenumber("13813813888");
         logger.info("请求 UserInfo 接口");
-        return "success";
+        return DataResult.success(user);
     }
 }
