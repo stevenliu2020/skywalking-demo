@@ -1,30 +1,28 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <img src="./assets/logo.png">
+  <div>
+    <el-button type="primary" @click="btnClick">调用后端</el-button>
+  </div>
 </template>
 
-<style lang="scss">
+<script setup>
+import { } from 'vue'
+import { userInfo } from '@/api/user'
+import { ElMessage } from 'element-plus'
+const btnClick = async () => {
+  const result = await userInfo()
+  console.log(result.data.data)
+  ElMessage.success('调用成功')
+}
+</script>
+
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  margin-top: 60px;
 }
 </style>
